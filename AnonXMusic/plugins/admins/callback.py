@@ -7,10 +7,10 @@ import asyncio
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-from ZelzalMusic import YouTube, app
-from ZelzalMusic.core.call import Zelzaly
-from ZelzalMusic.misc import SUDOERS, db
-from ZelzalMusic.utils.database import (
+from AnonXMusic import YouTube, app
+from AnonXMusic.core.call import Anony
+from AnonXMusic.misc import SUDOERS, db
+from AnonXMusic.utils.database import (
     get_active_chats,
     get_lang,
     get_upvote_count,
@@ -21,11 +21,11 @@ from ZelzalMusic.utils.database import (
     music_on,
     set_loop,
 )
-from ZelzalMusic.utils.decorators.language import languageCB
-from ZelzalMusic.utils.formatters import seconds_to_min
-from ZelzalMusic.utils.inline import close_markup, stream_markup, stream_markup_timer
-from ZelzalMusic.utils.stream.autoclear import auto_clean
-from ZelzalMusic.utils.thumbnails import get_thumb
+from AnonXMusic.utils.decorators.language import languageCB
+from AnonXMusic.utils.formatters import seconds_to_min
+from AnonXMusic.utils.inline import close_markup, stream_markup, stream_markup_timer
+from AnonXMusic.utils.stream.autoclear import auto_clean
+from AnonXMusic.utils.thumbnails import get_thumb
 from config import (
     BANNED_USERS,
     SOUNCLOUD_IMG_URL,
@@ -139,7 +139,7 @@ async def del_back_playlist(client, CallbackQuery, _):
             return await CallbackQuery.answer(_["admin_1"], show_alert=True)
         await CallbackQuery.answer()
         await music_off(chat_id)
-        await Zelzaly.pause_stream(chat_id)
+        await Anony.pause_stream(chat_id)
         await CallbackQuery.message.reply_text(
             _["admin_2"].format(mention), reply_markup=close_markup(_)
         )
@@ -148,13 +148,13 @@ async def del_back_playlist(client, CallbackQuery, _):
             return await CallbackQuery.answer(_["admin_3"], show_alert=True)
         await CallbackQuery.answer()
         await music_on(chat_id)
-        await Zelzaly.resume_stream(chat_id)
+        await Anony.resume_stream(chat_id)
         await CallbackQuery.message.reply_text(
             _["admin_4"].format(mention), reply_markup=close_markup(_)
         )
     elif command == "Stop" or command == "End":
         await CallbackQuery.answer()
-        await Zelzaly.stop_stream(chat_id)
+        await Anony.stop_stream(chat_id)
         await set_loop(chat_id, 0)
         await CallbackQuery.message.reply_text(
             _["admin_5"].format(mention), reply_markup=close_markup(_)
@@ -180,7 +180,7 @@ async def del_back_playlist(client, CallbackQuery, _):
                         reply_markup=close_markup(_),
                     )
                     try:
-                        return await Zelzaly.stop_stream(chat_id)
+                        return await Anony.stop_stream(chat_id)
                     except:
                         return
             except:
@@ -194,7 +194,7 @@ async def del_back_playlist(client, CallbackQuery, _):
                         ),
                         reply_markup=close_markup(_),
                     )
-                    return await Zelzaly.stop_stream(chat_id)
+                    return await Anony.stop_stream(chat_id)
                 except:
                     return
         else:
@@ -226,7 +226,7 @@ async def del_back_playlist(client, CallbackQuery, _):
             except:
                 image = None
             try:
-                await Zelzaly.skip_stream(chat_id, link, video=status, image=image)
+                await Anony.skip_stream(chat_id, link, video=status, image=image)
             except:
                 return await CallbackQuery.message.reply_text(_["call_6"])
             button = stream_markup(_, chat_id)
@@ -262,7 +262,7 @@ async def del_back_playlist(client, CallbackQuery, _):
             except:
                 image = None
             try:
-                await Zelzaly.skip_stream(chat_id, file_path, video=status, image=image)
+                await Anony.skip_stream(chat_id, file_path, video=status, image=image)
             except:
                 return await mystic.edit_text(_["call_6"])
             button = stream_markup(_, chat_id)
@@ -283,7 +283,7 @@ async def del_back_playlist(client, CallbackQuery, _):
             await mystic.delete()
         elif "index_" in queued:
             try:
-                await Zelzaly.skip_stream(chat_id, videoid, video=status)
+                await Anony.skip_stream(chat_id, videoid, video=status)
             except:
                 return await CallbackQuery.message.reply_text(_["call_6"])
             button = stream_markup(_, chat_id)
@@ -306,7 +306,7 @@ async def del_back_playlist(client, CallbackQuery, _):
                 except:
                     image = None
             try:
-                await Zelzaly.skip_stream(chat_id, queued, video=status, image=image)
+                await Anony.skip_stream(chat_id, queued, video=status, image=image)
             except:
                 return await CallbackQuery.message.reply_text(_["call_6"])
             if videoid == "telegram":
