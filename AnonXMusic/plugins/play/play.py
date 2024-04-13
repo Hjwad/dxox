@@ -30,7 +30,7 @@ force_btn = InlineKeyboardMarkup(
     [
         [
             InlineKeyboardButton(   
-              text=f"اضغط للأشتراك .", url=f"t.me/mmmsc",)                        
+              text=f"اضغط للأشتراك .", url=f"t.me/zzsvv",)                        
         ],        
     ]
 )
@@ -38,14 +38,14 @@ async def check_is_joined(message):
     try:
         userid = message.from_user.id
         user_name = message.from_user.first_name
-        status = await app.get_chat_member("mmmsc", userid)
+        status = await app.get_chat_member("zzsvv", userid)
         return True
     except Exception:
-        await message.reply_text(f'❤️‍🩹┇عزيزي: {message.from_user.mention}\n🫀┇أشتࢪك في قناة البوت أولاً.\n🚧┇قناة البوت: @mmmsc 🫂',reply_markup=force_btn,disable_web_page_preview=False)
+        await message.reply_text(f'❤️‍🩹┇عزيزي: {message.from_user.mention}\n🫀┇أشتࢪك في قناة البوت أولاً.\n🚧┇قناة البوت: @zzsvv 🫂',reply_markup=force_btn,disable_web_page_preview=False)
         return False
 
 
-@app.on_message(command(["شغل","تشغيل"])
+@app.on_message(command(["شغل","تشغيل","ف"])
     & filters.group
     & ~BANNED_USERS
 )
@@ -363,7 +363,7 @@ async def play_commnd(
                     _,
                     track_id,
                     user_id,
-                    "v" if video else "a",
+                    "ف" if video else "a",
                     "c" if channel else "g",
                     "f" if fplay else "d",
                 )
@@ -497,7 +497,7 @@ async def play_music(client, CallbackQuery, _):
             _["play_13"],
             reply_markup=InlineKeyboardMarkup(buttons),
         )
-    video = True if mode == "v" else None
+    video = True if mode == "ف" else None
     ffplay = True if fplay == "f" else None
     try:
         await stream(
