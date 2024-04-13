@@ -1,3 +1,7 @@
+#▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒✯ ʑᴇʟᴢᴀʟ_ᴍᴜsɪᴄ ✯▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+#▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒✯  T.me/ZThon   ✯▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+#▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒✯ T.me/Zelzal_Music ✯▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+
 import asyncio
 
 from pyrogram.enums import ChatMemberStatus
@@ -9,9 +13,9 @@ from pyrogram.errors import (
 )
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-from AnonXMusic import YouTube, app
-from AnonXMusic.misc import SUDOERS
-from AnonXMusic.utils.database import (
+from ZelzalMusic import YouTube, app
+from ZelzalMusic.misc import SUDOERS
+from ZelzalMusic.utils.database import (
     get_assistant,
     get_cmode,
     get_lang,
@@ -20,7 +24,7 @@ from AnonXMusic.utils.database import (
     is_active_chat,
     is_maintenance,
 )
-from AnonXMusic.utils.inline import botplaylist_markup
+from ZelzalMusic.utils.inline import botplaylist_markup
 from config import PLAYLIST_IMG_URL, SUPPORT_CHAT, adminlist
 from strings import get_string
 
