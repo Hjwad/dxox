@@ -7,6 +7,7 @@ from datetime import datetime
 import urllib3
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError
+from strings.filters import command
 from pyrogram import filters
 
 import config
@@ -27,7 +28,7 @@ async def is_heroku():
     return "heroku" in socket.getfqdn()
 
 
-@app.on_message(filters.command(["getlog", "logs", "getlogs"]) & SUDOERS)
+@app.on_message(command(["getlog", "logs", "السجلات"]) & SUDOERS)
 @language
 async def log_(client, message, _):
     try:
@@ -36,7 +37,7 @@ async def log_(client, message, _):
         await message.reply_text(_["server_1"])
 
 
-@app.on_message(filters.command(["update", "gitpull"]) & SUDOERS)
+@app.on_message(command(["تحديث", "حدث"]) & SUDOERS)
 @language
 async def update_(client, message, _):
     if await is_heroku():
@@ -65,12 +66,12 @@ async def update_(client, message, _):
     )
     for info in repo.iter_commits(f"HEAD..origin/{config.UPSTREAM_BRANCH}"):
         updates += f"<b>➣ #{info.count()}: <a href={REPO_}/commit/{info}>{info.summary}</a> ʙʏ -> {info.author}</b>\n\t\t\t\t<b>➥ ᴄᴏᴍᴍɪᴛᴇᴅ ᴏɴ :</b> {ordinal(int(datetime.fromtimestamp(info.committed_date).strftime('%d')))} {datetime.fromtimestamp(info.committed_date).strftime('%b')}, {datetime.fromtimestamp(info.committed_date).strftime('%Y')}\n\n"
-    _update_response_ = "<b>ᴀ ɴᴇᴡ ᴜᴩᴅᴀᴛᴇ ɪs ᴀᴠᴀɪʟᴀʙʟᴇ ғᴏʀ ᴛʜᴇ ʙᴏᴛ !</b>\n\n➣ ᴩᴜsʜɪɴɢ ᴜᴩᴅᴀᴛᴇs ɴᴏᴡ\n\n<b><u>ᴜᴩᴅᴀᴛᴇs:</u></b>\n\n"
+    _update_response_ = "<b>➣ يوجد تحديث جديد للبوت</b>\n➣ قم بتحديث بوتك الان\n\n<b>➣ التحديثات :</b>\n"
     _final_updates_ = _update_response_ + updates
     if len(_final_updates_) > 4096:
         url = await AnonyBin(updates)
         nrs = await response.edit(
-            f"<b>ᴀ ɴᴇᴡ ᴜᴩᴅᴀᴛᴇ ɪs ᴀᴠᴀɪʟᴀʙʟᴇ ғᴏʀ ᴛʜᴇ ʙᴏᴛ !</b>\n\n➣ ᴩᴜsʜɪɴɢ ᴜᴩᴅᴀᴛᴇs ɴᴏᴡ\n\n<u><b>ᴜᴩᴅᴀᴛᴇs :</b></u>\n\n<a href={url}>ᴄʜᴇᴄᴋ ᴜᴩᴅᴀᴛᴇs</a>"
+            f"<b>➣ يوجد تحديث جديد للبوت</b>\n➣ قم بتحديث بوتك الان\n\n<b>➣ التحديثات :</b>\n\n<a href={url}>اضغط هنا لرؤية التحديثات</a>"
         )
     else:
         nrs = await response.edit(_final_updates_, disable_web_page_preview=True)
@@ -110,15 +111,15 @@ async def update_(client, message, _):
         exit()
 
 
-@app.on_message(filters.command(["restart"]) & SUDOERS)
+@app.on_message(command(["اعاده تشغيل"]) & SUDOERS)
 async def restart_(_, message):
-    response = await message.reply_text("ʀᴇsᴛᴀʀᴛɪɴɢ...")
+    response = await message.reply_text("- جـارِ إعـادة التشغيـل ...")
     ac_chats = await get_active_chats()
     for x in ac_chats:
         try:
             await app.send_message(
                 chat_id=int(x),
-                text=f"{app.mention} ɪs ʀᴇsᴛᴀʀᴛɪɴɢ...\n\nʏᴏᴜ ᴄᴀɴ sᴛᴀʀᴛ ᴩʟᴀʏɪɴɢ ᴀɢᴀɪɴ ᴀғᴛᴇʀ 15-20 sᴇᴄᴏɴᴅs.",
+                text=f"» {app.mention} في وضـع اعـادة التشغيـل ...\n\n» انتظـر 20-15 ثانية ⏳. . .",
             )
             await remove_active_chat(x)
             await remove_active_video_chat(x)
@@ -132,6 +133,6 @@ async def restart_(_, message):
     except:
         pass
     await response.edit_text(
-        "» ʀᴇsᴛᴀʀᴛ ᴘʀᴏᴄᴇss sᴛᴀʀᴛᴇᴅ, ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ ғᴏʀ ғᴇᴡ sᴇᴄᴏɴᴅs ᴜɴᴛɪʟ ᴛʜᴇ ʙᴏᴛ sᴛᴀʀᴛs..."
+        "» جـارِ اعـادة تشغيـل البـوت ...\n» انتظـر بعض الثواني ⏳\n» حتـى يعمـل البـوت ☑️..."
     )
     os.system(f"kill -9 {os.getpid()} && bash start")
