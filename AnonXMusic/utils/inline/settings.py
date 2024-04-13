@@ -6,8 +6,7 @@ from pyrogram.types import InlineKeyboardButton
 def setting_markup(_):
     buttons = [
         [
-            InlineKeyboardButton(text=_["ST_B_1"], callback_data="AU"),
-            InlineKeyboardButton(text=_["ST_B_3"], callback_data="LG"),
+            InlineKeyboardButton(text=_["ST_B_1"], callback_data="AU"),       
         ],
         [
             InlineKeyboardButton(text=_["ST_B_2"], callback_data="PM"),
@@ -25,7 +24,7 @@ def setting_markup(_):
 def vote_mode_markup(_, current, mode: Union[bool, str] = None):
     buttons = [
         [
-            InlineKeyboardButton(text="Vᴏᴛɪɴɢ ᴍᴏᴅᴇ ➜", callback_data="VOTEANSWER"),
+            InlineKeyboardButton(text="وضع التصويت ➜", callback_data="VOTEANSWER"),
             InlineKeyboardButton(
                 text=_["ST_B_5"] if mode == True else _["ST_B_6"],
                 callback_data="VOMODECHANGE",
@@ -34,7 +33,7 @@ def vote_mode_markup(_, current, mode: Union[bool, str] = None):
         [
             InlineKeyboardButton(text="-2", callback_data="FERRARIUDTI M"),
             InlineKeyboardButton(
-                text=f"ᴄᴜʀʀᴇɴᴛ : {current}",
+                text=f"حالياً : {current}",
                 callback_data="ANSWERVOMODE",
             ),
             InlineKeyboardButton(text="+2", callback_data="FERRARIUDTI A"),
