@@ -1,29 +1,25 @@
+#▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒✯ ʑᴇʟᴢᴀʟ_ᴍᴜsɪᴄ ✯▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+#▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒✯  T.me/ZThon   ✯▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+#▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒✯ T.me/Zelzal_Music ✯▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+
+from ZelzalMusic.plugins.play.filters import command
 from pyrogram import filters
 from pyrogram.enums import ChatMembersFilter, ChatMemberStatus, ChatType
 from pyrogram.types import Message
 
-from AnonXMusic import app
-from strings.filters import command
-from AnonXMusic.utils.database import set_cmode
-from AnonXMusic.utils.decorators.admins import AdminActual
+from ZelzalMusic import app
+from ZelzalMusic.utils.database import set_cmode
+from ZelzalMusic.utils.decorators.admins import AdminActual
 from config import BANNED_USERS
 
 
-@app.on_message(
-    filters.command(["channelplay"])
-    & filters.group 
-    & ~BANNED_USERS
-)
-@app.on_message(command(["ربط"])
-    & filters.group
-    & ~BANNED_USERS
-)
+@app.on_message(command(["/channelplay", "ربط"]) & filters.group & ~BANNED_USERS)
 @AdminActual
 async def playmode_(client, message: Message, _):
     if len(message.command) < 2:
         return await message.reply_text(_["cplay_1"].format(message.chat.title))
     query = message.text.split(None, 2)[1].lower().strip()
-    if (str(query)).lower() == "disable":
+    if (str(query)).lower() == "تعطيل":
         await set_cmode(message.chat.id, None)
         return await message.reply_text(_["cplay_7"])
     elif str(query) == "linked":
