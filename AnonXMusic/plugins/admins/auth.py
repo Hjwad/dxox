@@ -1,4 +1,5 @@
 from pyrogram import filters
+from strings.filters import command
 from pyrogram.types import Message
 
 from AnonXMusic import app
@@ -14,7 +15,7 @@ from AnonXMusic.utils.inline import close_markup
 from config import BANNED_USERS, adminlist
 
 
-@app.on_message(filters.command("auth") & filters.group & ~BANNED_USERS)
+@app.on_message(command("رفع ادمن") & filters.group & ~BANNED_USERS)
 @AdminActual
 async def auth(client, message: Message, _):
     if not message.reply_to_message:
@@ -43,7 +44,7 @@ async def auth(client, message: Message, _):
         return await message.reply_text(_["auth_3"].format(user.mention))
 
 
-@app.on_message(filters.command("unauth") & filters.group & ~BANNED_USERS)
+@app.on_message(command("تنزيل ادمن") & filters.group & ~BANNED_USERS)
 @AdminActual
 async def unauthusers(client, message: Message, _):
     if not message.reply_to_message:
@@ -63,7 +64,7 @@ async def unauthusers(client, message: Message, _):
 
 
 @app.on_message(
-    filters.command(["authlist", "authusers"]) & filters.group & ~BANNED_USERS
+    command(["قائمة الادمن", "الادمنيه"]) & filters.group & ~BANNED_USERS
 )
 @language
 async def authusers(client, message: Message, _):
