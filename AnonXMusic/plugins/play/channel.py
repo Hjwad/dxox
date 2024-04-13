@@ -2,14 +2,14 @@
 #▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒✯  T.me/ZThon   ✯▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 #▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒✯ T.me/Zelzal_Music ✯▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 
-from ZelzalMusic.plugins.play.filters import command
+from AnonXMusic.plugins.play.filters import command
 from pyrogram import filters
 from pyrogram.enums import ChatMembersFilter, ChatMemberStatus, ChatType
 from pyrogram.types import Message
 
-from ZelzalMusic import app
-from ZelzalMusic.utils.database import set_cmode
-from ZelzalMusic.utils.decorators.admins import AdminActual
+from AnonXMusic import app
+from AnonXMusic.utils.database import set_cmode
+from AnonXMusic.utils.decorators.admins import AdminActual
 from config import BANNED_USERS
 
 
