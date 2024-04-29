@@ -41,7 +41,7 @@ async def check_is_joined(message):
         status = await app.get_chat_member("mmmsc", userid)
         return True
     except Exception:
-        await message.reply_text(f'❤️‍🩹┇عزيزي: {message.from_user.mention}\n🫀┇أشتࢪك في قناة البوت أولاً.\n🚧┇قناة البوت: @mmmsc 🫂',reply_markup=force_btn,disable_web_page_preview=False)
+        await message.reply_text(f'┇عزيزي: {message.from_user.mention}\n┇أشتࢪك في قناة البوت أولاً.\n┇قناة البوت: @mmmsc ',reply_markup=force_btn,disable_web_page_preview=False)
         return False
 
 
