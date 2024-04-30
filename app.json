@@ -42,11 +42,6 @@
         "value": "",
         "required": true
       },
-      "STRING_SESSION2": {
-        "description": "A Pyrogram v2 String Session from @StringFatherBot on Telegram.",
-        "value": "",
-        "required": true     
-      },
       "HEROKU_API_KEY": {
         "description": "Your Heroku account's API key",
         "value": "",
