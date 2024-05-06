@@ -17,7 +17,6 @@ from AnonXMusic.misc import SUDOERS
 from AnonXMusic.utils.database import (get_cmode, get_lang,
                                        get_playmode, get_playtype,
                                        is_active_chat)
-from AnonXMusic.utils.database.memorydatabase import is_maintenance
 from AnonXMusic.utils.inline.playlist import botplaylist_markup
 
 
