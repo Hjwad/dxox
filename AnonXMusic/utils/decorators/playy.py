@@ -44,13 +44,6 @@ def PlayWrapper(command):
                 return await message.reply_text(
                     "Bot is under maintenance. Please wait for some time..."
                 )
-        if PRIVATE_BOT_MODE == str(True):
-            if not await is_served_private_chat(message.chat.id):
-                await message.reply_text(
-                    "**Private Music Bot**\n\nOnly for authorized chats from the owner. Ask my owner to allow your chat first."
-                )
-                return await app.leave_chat(message.chat.id)
-        if await is_commanddelete_on(message.chat.id):
             try:
                 await message.delete()
             except:
